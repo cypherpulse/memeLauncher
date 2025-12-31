@@ -98,9 +98,9 @@ export function LauncherInterface() {
               </Button>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-3">
-            <Button variant="outline" asChild><a href={`${BASESCAN_URL}/tx/${launchSuccess.txHash}`} target="_blank" rel="noopener noreferrer"><ExternalLink className="h-4 w-4 mr-2" />View TX</a></Button>
-            <Button variant="outline" asChild><a href={`${UNISWAP_URL}/#/swap?chain=base_sepolia&outputCurrency=${launchSuccess.tokenAddress}`} target="_blank" rel="noopener noreferrer"><ExternalLink className="h-4 w-4 mr-2" />Trade</a></Button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <Button variant="outline" asChild className="w-full"><a href={`${BASESCAN_URL}/tx/${launchSuccess.txHash}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center"><ExternalLink className="h-4 w-4 mr-2" />View TX</a></Button>
+            <Button variant="outline" asChild className="w-full"><a href={`${UNISWAP_URL}/#/swap?chain=base_sepolia&outputCurrency=${launchSuccess.tokenAddress}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center"><ExternalLink className="h-4 w-4 mr-2" />Trade</a></Button>
           </div>
           <Button variant="purple" className="w-full" onClick={handleShare}><Share2 className="h-4 w-4 mr-2" />Share on X</Button>
           <Button variant="glass" className="w-full" onClick={handleNewLaunch}>Launch Another Meme</Button>
@@ -116,11 +116,11 @@ export function LauncherInterface() {
         <CardDescription>Create your token and add liquidity in one transaction</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2"><label className="text-sm font-medium text-foreground">Token Name</label><Input placeholder="DogeMoon" value={name} onChange={(e) => setName(e.target.value)} maxLength={32} /></div>
           <div className="space-y-2"><label className="text-sm font-medium text-foreground">Symbol</label><Input placeholder="DOGEM" value={symbol} onChange={(e) => setSymbol(e.target.value.toUpperCase())} maxLength={10} /></div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2"><label className="text-sm font-medium text-foreground">Total Supply</label><Input type="number" placeholder="1000000000" value={totalSupply} onChange={(e) => setTotalSupply(e.target.value)} /></div>
           <div className="space-y-2"><label className="text-sm font-medium text-foreground">Liquidity %</label><Input type="number" placeholder="20" min="1" max="100" value={liquidityPercent} onChange={(e) => setLiquidityPercent(e.target.value)} /></div>
         </div>

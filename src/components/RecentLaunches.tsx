@@ -25,9 +25,9 @@ export function RecentLaunches() {
 
   if (isLoading) {
     return (
-      <section className="w-full">
-        <h2 className="text-xl font-bold mb-4 text-foreground">Recent Launches</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <section className="w-full px-4 sm:px-0">
+        <h2 className="text-lg sm:text-xl font-bold mb-4 text-foreground">Recent Launches</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {[1, 2, 3].map((i) => (
             <div key={i} className="rounded-xl border border-border bg-card p-4 animate-pulse">
               <div className="h-4 bg-muted rounded w-3/4 mb-3" />
@@ -41,10 +41,10 @@ export function RecentLaunches() {
 
   if (!launchedTokens || launchedTokens.length === 0) {
     return (
-      <section className="w-full">
-        <h2 className="text-xl font-bold mb-4 text-foreground">Recent Launches</h2>
-        <div className="rounded-xl border border-dashed border-border bg-card/50 p-8 text-center">
-          <p className="text-muted-foreground">No memes launched yet. Be the first! 🚀</p>
+      <section className="w-full px-4 sm:px-0">
+        <h2 className="text-lg sm:text-xl font-bold mb-4 text-foreground">Recent Launches</h2>
+        <div className="rounded-xl border border-dashed border-border bg-card/50 p-6 sm:p-8 text-center">
+          <p className="text-sm sm:text-base text-muted-foreground">No memes launched yet. Be the first! 🚀</p>
         </div>
       </section>
     );
@@ -54,12 +54,12 @@ export function RecentLaunches() {
   const recentTokens = [...launchedTokens].reverse().slice(0, 6);
 
   return (
-    <section className="w-full">
+    <section className="w-full px-4 sm:px-0">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-bold text-foreground">Recent Launches</h2>
-        <span className="text-sm text-muted-foreground">{launchedTokens.length} total</span>
+        <h2 className="text-lg sm:text-xl font-bold text-foreground">Recent Launches</h2>
+        <span className="text-xs sm:text-sm text-muted-foreground">{launchedTokens.length} total</span>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {recentTokens.map((tokenAddress, index) => (
           <div
             key={tokenAddress}

@@ -56,21 +56,20 @@ export function StatsSection() {
   ];
 
   return (
-    <section className="w-full">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <section className="w-full px-4 sm:px-0">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="relative overflow-hidden rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-lg group"
-          >
+            className="relative overflow-hidden rounded-xl border border-border bg-card p-4 sm:p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-lg group">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="relative flex items-center gap-4">
-              <div className={`p-3 rounded-lg ${stat.bgColor}`}>
-                <stat.icon className={`w-5 h-5 ${stat.color}`} />
+            <div className="relative flex items-center gap-3 sm:gap-4">
+              <div className={`p-2.5 sm:p-3 rounded-lg ${stat.bgColor}`}>
+                <stat.icon className={`w-4 h-4 sm:w-5 sm:h-5 ${stat.color}`} />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">{stat.label}</p>
-                <p className={`text-xl font-bold ${stat.color}`}>{stat.value}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground">{stat.label}</p>
+                <p className={`text-lg sm:text-xl font-bold ${stat.color}`}>{stat.value}</p>
               </div>
             </div>
           </div>
