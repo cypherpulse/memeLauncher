@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark crypto theme - neon vibes */
+    --background: 222 47% 6%;
+    --foreground: 180 100% 95%;
+
+    --card: 222 47% 9%;
+    --card-foreground: 180 100% 95%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 180 100% 95%;
+
+    /* Neon cyan primary */
+    --primary: 174 100% 50%;
+    --primary-foreground: 222 47% 6%;
+
+    /* Purple secondary */
+    --secondary: 270 70% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 222 30% 15%;
+    --muted-foreground: 220 10% 55%;
+
+    /* Green accent */
+    --accent: 142 76% 50%;
+    --accent-foreground: 222 47% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 12%;
+    --ring: 174 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --glow-primary: 174 100% 50%;
+    --glow-secondary: 270 70% 55%;
+    --glow-accent: 142 76% 50%;
+    
+    --gradient-hero: linear-gradient(135deg, hsl(174 100% 50% / 0.15), hsl(270 70% 55% / 0.15));
+    --gradient-card: linear-gradient(145deg, hsl(222 47% 11%), hsl(222 47% 7%));
+    --gradient-button: linear-gradient(135deg, hsl(174 100% 50%), hsl(142 76% 50%));
+    --gradient-button-hover: linear-gradient(135deg, hsl(174 100% 55%), hsl(142 76% 55%));
+    --gradient-purple: linear-gradient(135deg, hsl(270 70% 55%), hsl(300 70% 50%));
+
+    --shadow-glow: 0 0 30px hsl(174 100% 50% / 0.3);
+    --shadow-glow-lg: 0 0 60px hsl(174 100% 50% / 0.4);
+    --shadow-purple: 0 0 30px hsl(270 70% 55% / 0.3);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.3);
+
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 180 100% 95%;
+    --sidebar-primary: 174 100% 50%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 30% 15%;
+    --sidebar-accent-foreground: 180 100% 95%;
+    --sidebar-border: 222 30% 18%;
+    --sidebar-ring: 174 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  code, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  .text-glow-purple {
+    text-shadow: 0 0 20px hsl(var(--secondary) / 0.5);
+  }
+
+  .box-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .box-glow-lg {
+    box-shadow: var(--shadow-glow-lg);
+  }
+
+  .box-glow-purple {
+    box-shadow: var(--shadow-purple);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .gradient-button {
+    background: var(--gradient-button);
+  }
+
+  .gradient-purple {
+    background: var(--gradient-purple);
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .glass {
+    background: hsl(222 47% 10% / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .noise {
+    position: relative;
+  }
+
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
