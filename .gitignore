@@ -1,0 +1,98 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+yarn.lock
+
+
+# Production builds
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+*.env
+
+# Foundry & Solidity
+cache/
+broadcast/
+out/
+*.log
+lcov.info
+coverage/
+typechain/
+typechain-types/
+
+# Hardhat
+artifacts/
+cache_hardhat/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.settings/
+.classpath
+
+# Testing
+coverage/
+.coverage
+*.cover
+.pytest_cache/
+.tox/
+
+# Misc
+*.bak
+*.tmp
+*.temp
+.turbo/
+.vercel/
+*.tsbuildinfo
+next-env.d.ts
+
+# OS
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Private keys (IMPORTANT - never commit!)
+*.key
+*.pem
+mnemonic.txt
+secrets.json
+private-keys.txt
+
+# Deployment artifacts
+deployments/localhost/
+deployments/hardhat/
+
+# Subgraph
+subgraph/generated/
+subgraph/build/
+
+*.ps1
