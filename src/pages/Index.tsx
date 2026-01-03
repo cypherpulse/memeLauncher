@@ -2,10 +2,12 @@ import { LauncherInterface } from '@/components/LauncherInterface';
 import { StatsSection } from '@/components/StatsSection';
 import { RecentLaunches } from '@/components/RecentLaunches';
 import { AdminPanel } from '@/components/AdminPanel';
-import { Rocket, Zap, Shield, Droplets } from 'lucide-react';
-import { useAccount, useConnect, useDisconnect } from 'wagmi';
+import { Rocket, Zap, Shield, Droplets, BarChart3, Settings } from 'lucide-react';
+import { useAccount, useConnect, useDisconnect, useReadContract } from 'wagmi';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { injected } from 'wagmi/connectors';
+import { LAUNCHER_ADDRESS, LAUNCHER_ABI } from '@/lib/contract';
 
 function WalletButton() {
   const { address, isConnected } = useAccount();
@@ -28,6 +30,17 @@ function WalletButton() {
 }
 
 const Index = () => {
+  const { address } = useAccount();
+
+  // Check if user is admin/owner
+  const { data: owner } = useReadContract({
+    address: LAUNCHER_ADDRESS,
+    abi: LAUNCHER_ABI,
+    functionName: 'owner',
+  });
+
+  const isOwner = address && owner && address.toLowerCase() === owner.toLowerCase();
+
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-30 pointer-events-none" />
@@ -49,7 +62,8 @@ const Index = () => {
         </div>
       </header>
 
-      <main className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 space-y-8 sm:space-y-10 lg:space-y-12">
+      <main className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 space-y-12 sm:space-y-16 lg:space-y-20">
+        {/* Hero Section */}
         <section className="text-center space-y-4 sm:space-y-6 py-4 sm:py-6 lg:py-8">
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs sm:text-sm font-medium">
             <Zap className="w-3 h-3 sm:w-4 sm:h-4" />Launch in 30 seconds
@@ -74,10 +88,49 @@ const Index = () => {
           </div>
         </section>
 
-        <StatsSection />
-        <section className="max-w-lg mx-auto px-4 sm:px-0"><LauncherInterface /></section>
-        <RecentLaunches />
-        <div className="max-w-lg mx-auto px-4 sm:px-0"><AdminPanel /></div>
+        {/* Main Content Tabs */}
+        <Tabs defaultValue="launch" className="w-full">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-8">
+            <TabsTrigger value="launch" className="flex items-center gap-2">
+              <Rocket className="w-4 h-4" />
+              <span className="hidden sm:inline">Launch</span>
+            </TabsTrigger>
+            <TabsTrigger value="stats" className="flex items-center gap-2">
+              <BarChart3 className="w-4 h-4" />
+              <span className="hidden sm:inline">Stats</span>
+            </TabsTrigger>
+            {isOwner && (
+              <TabsTrigger value="admin" className="flex items-center gap-2">
+                <Settings className="w-4 h-4" />
+                <span className="hidden sm:inline">Admin</span>
+              </TabsTrigger>
+            )}
+          </TabsList>
+
+          <TabsContent value="launch" className="space-y-8">
+            {/* Main Launch Interface - Primary Action */}
+            <section className="max-w-lg mx-auto px-4 sm:px-0">
+              <LauncherInterface />
+            </section>
+          </TabsContent>
+
+          <TabsContent value="stats" className="space-y-8">
+            {/* Stats Section - Key Metrics */}
+            <StatsSection />
+
+            {/* Recent Launches - Social Proof */}
+            <RecentLaunches />
+          </TabsContent>
+
+          {isOwner && (
+            <TabsContent value="admin" className="space-y-8">
+              {/* Admin Panel - Secondary Action (only for owner) */}
+              <div className="max-w-lg mx-auto px-4 sm:px-0">
+                <AdminPanel />
+              </div>
+            </TabsContent>
+          )}
+        </Tabs>
 
         <footer className="text-center py-6 sm:py-8 border-t border-border px-4">
           <p className="text-xs sm:text-sm text-muted-foreground break-all sm:break-normal">Contract: <code className="text-xs font-mono text-primary">0xc1c77747448f7d86e9a911e70773fc9EE4504976</code></p>
