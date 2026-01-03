@@ -49,7 +49,8 @@ const Index = () => {
         </div>
       </header>
 
-      <main className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 space-y-8 sm:space-y-10 lg:space-y-12">
+      <main className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 space-y-12 sm:space-y-16 lg:space-y-20">
+        {/* Hero Section */}
         <section className="text-center space-y-4 sm:space-y-6 py-4 sm:py-6 lg:py-8">
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs sm:text-sm font-medium">
             <Zap className="w-3 h-3 sm:w-4 sm:h-4" />Launch in 30 seconds
@@ -74,10 +75,21 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Stats Section - Key Metrics */}
         <StatsSection />
-        <section className="max-w-lg mx-auto px-4 sm:px-0"><LauncherInterface /></section>
+
+        {/* Main Launch Interface - Primary Action */}
+        <section className="max-w-lg mx-auto px-4 sm:px-0">
+          <LauncherInterface />
+        </section>
+
+        {/* Recent Launches - Social Proof */}
         <RecentLaunches />
-        <div className="max-w-lg mx-auto px-4 sm:px-0"><AdminPanel /></div>
+
+        {/* Admin Panel - Secondary Action (only for owner) */}
+        <div className="max-w-lg mx-auto px-4 sm:px-0">
+          <AdminPanel />
+        </div>
 
         <footer className="text-center py-6 sm:py-8 border-t border-border px-4">
           <p className="text-xs sm:text-sm text-muted-foreground break-all sm:break-normal">Contract: <code className="text-xs font-mono text-primary">0xc1c77747448f7d86e9a911e70773fc9EE4504976</code></p>

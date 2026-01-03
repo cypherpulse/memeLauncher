@@ -57,19 +57,24 @@ export function StatsSection() {
 
   return (
     <section className="w-full px-4 sm:px-0">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+      <div className="text-center mb-8">
+        <h2 className="text-lg sm:text-xl font-bold text-foreground mb-2">Platform Stats</h2>
+        <p className="text-sm text-muted-foreground">Real-time metrics from the Base ecosystem</p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="relative overflow-hidden rounded-xl border border-border bg-card p-4 sm:p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-lg group">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="relative flex items-center gap-3 sm:gap-4">
-              <div className={`p-2.5 sm:p-3 rounded-lg ${stat.bgColor}`}>
-                <stat.icon className={`w-4 h-4 sm:w-5 sm:h-5 ${stat.color}`} />
+            className="relative overflow-hidden rounded-xl border border-border bg-card p-5 sm:p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 group"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative flex items-center gap-4">
+              <div className={`p-3 sm:p-4 rounded-xl ${stat.bgColor} ring-1 ring-border/20`}>
+                <stat.icon className={`w-5 h-5 sm:w-6 sm:h-6 ${stat.color}`} />
               </div>
-              <div>
-                <p className="text-xs sm:text-sm text-muted-foreground">{stat.label}</p>
-                <p className={`text-lg sm:text-xl font-bold ${stat.color}`}>{stat.value}</p>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm text-muted-foreground font-medium">{stat.label}</p>
+                <p className={`text-xl sm:text-2xl font-bold ${stat.color} truncate`}>{stat.value}</p>
               </div>
             </div>
           </div>

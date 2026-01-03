@@ -80,13 +80,13 @@ export function LauncherInterface() {
 
   if (launchSuccess) {
     return (
-      <Card className="border-primary/50 bg-gradient-to-br from-primary/10 via-card to-secondary/10 box-glow">
-        <CardHeader className="text-center pb-2">
+      <Card className="border-primary/50 bg-gradient-to-br from-primary/10 via-card to-secondary/10 shadow-xl">
+        <CardHeader className="text-center pb-4">
           <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center animate-pulse-glow">
             <Sparkles className="w-8 h-8 text-primary" />
           </div>
           <CardTitle className="text-2xl text-primary text-glow">Meme Launched! 🎉</CardTitle>
-          <CardDescription>{launchSuccess.name} (${launchSuccess.symbol}) is now live</CardDescription>
+          <CardDescription className="text-base">{launchSuccess.name} (${launchSuccess.symbol}) is now live</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="p-4 rounded-lg bg-muted/50 border border-border">
@@ -110,10 +110,13 @@ export function LauncherInterface() {
   }
 
   return (
-    <Card className="border-border bg-card">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2"><Rocket className="h-5 w-5 text-primary" />Launch Your Meme</CardTitle>
-        <CardDescription>Create your token and add liquidity in one transaction</CardDescription>
+    <Card className="border-border bg-card shadow-xl">
+      <CardHeader className="text-center pb-4">
+        <div className="mx-auto mb-4 w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+          <Rocket className="w-6 h-6 text-primary" />
+        </div>
+        <CardTitle className="text-xl sm:text-2xl text-foreground">Launch Your Meme</CardTitle>
+        <CardDescription className="text-sm sm:text-base">Create your token and add liquidity in one transaction</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
